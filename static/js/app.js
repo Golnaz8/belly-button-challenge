@@ -11,10 +11,8 @@ function buildMetadata(sample) {
     // Use d3 to select the panel with id of `#sample-metadata`
     const panel = d3.select("#sample-metadata");
 
-
     // Use `.html("") to clear any existing metadata
     panel.html("");
-
 
     // Inside a loop, you will need to use d3 to append new
     // tags for each key-value in the filtered metadata.
@@ -49,7 +47,7 @@ function buildCharts(sample) {
     console.log("otu_labels:", otu_labels);
 
     // Build a Bubble Chart
-    const trace1 = [{
+    const trace1 = {
       x: otu_ids,
       y: sample_values,
       text: otu_labels,
@@ -59,7 +57,8 @@ function buildCharts(sample) {
         color: otu_ids,
         colorscale: "Earth"
       }
-    }];
+    };
+    bubbleData = [trace1]
     const bubbleLayout = {
       title: "Bacteria Cultures Per Sample",
       xaxis: { title: "OTU ID" },
@@ -67,21 +66,21 @@ function buildCharts(sample) {
     };
 
     // Render the Bubble Chart
-    Plotly.newPlot("bubble", trace1, bubbleLayout);
+    Plotly.newPlot("bubble", bubbleData, bubbleLayout);
 
     // For the Bar Chart, map the otu_ids to a list of strings for your yticks
     const yticks = otu_ids.slice(0, 10).map(id => `OTU ${id}`).reverse();
 
     // Build a Bar Chart
     // Don't forget to slice and reverse the input data appropriately
-    const trace2 = [{
+    const trace2 = {
       x: sample_values.slice(0, 10).reverse(),
       y: yticks,
       text: otu_labels.slice(0, 10).reverse(),
       type: "bar",
       orientation: "h"
-    }];
-
+    };
+    barData = [trace2]
     const barLayout = {
       title: "Top 10 Bacteria Cultures Found",
       margin: { t: 30, l: 150 },
@@ -89,7 +88,7 @@ function buildCharts(sample) {
     };
   
     // Render the Bar Chart
-    Plotly.newPlot("bar", trace2, barLayout);
+    Plotly.newPlot("bar", barData, barLayout);
   });
 }
 
