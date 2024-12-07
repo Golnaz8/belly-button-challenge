@@ -32,11 +32,11 @@ This project leverages several technologies:
     cd belly-button-challenge
 
 ## Deployment
-The dashboard is live on GitHub Pages:
+The dashboard is live on GitHub Pages: https://golnaz8.github.io/belly-button-challenge/
 
 
 ## Github URL
-https://github.com/Golnaz8/nosql-challenge
+https://github.com/Golnaz8/belly-button-challenge
 
 
 ## Acknowledgements
